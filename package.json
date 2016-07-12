@@ -12,17 +12,19 @@
     "type": "git",
     "url": "git+https://github.com/xternbootcamp16/meganote-server.git"
   },
-  "author": "Dave Strus",
-  "license": "MIT",
+  "author": "Cameron Grundy",
+  "license": "Poirdue",
   "bugs": {
     "url": "https://github.com/xternbootcamp16/meganote-server/issues"
   },
   "homepage": "https://github.com/xternbootcamp16/meganote-server#readme",
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "html-to-text": "^2.1.0",
+    "jsonwebtoken": "^7.0.1",
     "mongoose": "^4.5.0",
     "sanitize-html": "^1.12.0"
   },

@@ -2,36 +2,25 @@ require('dotenv').load();
 var express = require('express');
 var bodyParser = require('body-parser');
 var noteRoutes = require('./routes/note-routes');
+var userRoutes = require('./routes/user-routes');
+var sessionRoutes = require('./routes/session-routes');
+var headersMiddleware = require('./middleware/headers');
+var authMiddleware = require('./middleware/auth');
 
 var app = express();
 
 // Middleware
-app.use(function(req, res, next) {
-  // Allow CORS.
-  res.header('Access-Control-Allow-Origin', '*');
-
-  // Allow Content-Type header (for JSON payloads).
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Allow more HTTP verbs.
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
-
-  // Continue processing the request.
-  next();
-});
+app.use(headersMiddleware);
+app.use(authMiddleware);
 
 // Body parsing for JSON POST/PUT payloads
 app.use(bodyParser.json());
 
 // Routes
 app.use('/api/v1/notes', noteRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/sessions', sessionRoutes);
 
-// CREATE a user
-app.post('/users', function(req, res) {
-  res.json({
-    msg: 'HOORAY!'
-  });
-});
 
 app.listen(3030, function() {
   console.log('Listening on http://localhost:3030...');
